@@ -92,37 +92,3 @@ def go():
 
 if __name__ == "__main__":
     go()
-
-
-## Instrucciones 
-# REplica adaptada al caso de uso 
-#=============================================================
-#            Main Controller (Orquestador)      
-#=============================================================
-
-# def main(topic):
-#     # 1. El Router decide el camino
-#     ruta_seleccionada = agente_router(topic)
-#     logger.info(f"Router decidió: {ruta_seleccionada}")
-    
-#     resultado = ""
-    
-#     # 2. Switch Case (Lógica de Enrutamiento)
-#     if ruta_seleccionada == "RECONCILIACION":
-#         resultado = flujo_reconciliacion(topic)
-        
-#     elif ruta_seleccionada == "ROMANTICO":
-#         resultado = flujo_romantico(topic)
-        
-#     elif ruta_seleccionada == "CASUAL":
-#         resultado = flujo_casual(topic)
-        
-#     else:
-#         # Fallback
-#         logger.warning("Ruta desconocida, ejecutando flujo casual.")
-#         resultado = flujo_casual(topic)
-        
-#     return {
-#         "ruta": ruta_seleccionada,
-#         "mensaje": resultado
-#     }

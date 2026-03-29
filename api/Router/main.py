@@ -1,20 +1,30 @@
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
-from fastapi import Body, FastAPI
+from src.main import route_query
 
-app = FastAPI()
-
-
-BOOKS = [
-    {'title': 'Batman: Year One',        'author': 'Frank Miller', 'category': 'superhero'},
-    {'title': 'The Dark Knight Returns', 'author': 'Frank Miller', 'category': 'superhero'},
-    {'title': 'Watchmen',                'author': 'Alan Moore',   'category': 'graphic-novel'},
-    {'title': 'The Killing Joke',        'author': 'Alan Moore',   'category': 'graphic-novel'},
-    {'title': 'Green Lantern: Rebirth',  'author': 'Geoff Johns',  'category': 'superhero'},
-    {'title': 'Superman: Red Son',       'author': 'Mark Millar',  'category': 'graphic-novel'},
-]
+app = FastAPI(title="Multi-System Agent API", version="0.1.0")
 
 
-@app.get("/books")
-async def read_all_books():
-    return BOOKS
+class QueryRequest(BaseModel):
+    query: str
+
+
+class QueryResponse(BaseModel):
+    departamento: str
+    razon: str
+    respuesta: str
+
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
+
+@app.post("/query", response_model=QueryResponse)
+async def handle_query(request: QueryRequest):
+    if not request.query.strip():
+        raise HTTPException(status_code=400, detail="El campo 'query' no puede estar vacio.")
+    result = route_query(request.query)
+    return QueryResponse(**result)
 
