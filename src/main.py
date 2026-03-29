@@ -58,7 +58,7 @@ def route_query(user_query: str) -> dict:
             reason = "Departamento no reconocido por el orquestador."
 
     specialist_prompt = load_prompt(DEPARTMENT_PROMPTS[department])
-    specialist_response = call_api(specialist_prompt, user_query, json_mode=False)
+    specialist_response = call_api(specialist_prompt, user_query, json_mode=True)
 
     return {
         "departamento": department,

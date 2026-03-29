@@ -34,4 +34,14 @@ Atiendes consultas sobre:
 
 ## Formato
 
-Responde en texto plano en espanol.
+Responde estrictamente en JSON con esta estructura:
+
+```json
+{
+  "diagnostico": "string",
+  "analisis": "string",
+  "recomendacion": "string",
+  "riesgos_y_supuestos": "string o null",
+  "datos_faltantes": "string o null"
+}
+```

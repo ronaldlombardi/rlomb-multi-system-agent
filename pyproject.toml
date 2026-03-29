@@ -31,6 +31,10 @@ dev = [
     "ruff>=0.15.7",
 ]
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
 [tool.ruff]
 line-length = 120
 select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C", "PL", "PT"]
